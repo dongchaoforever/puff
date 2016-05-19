@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Puff>
+
+	<constant>
+		<!-- 是否使用Puff的开发模式。 正式上线后改成false -->
+		<property name="devMode" value="false" />
+		<!-- 编码 -->
+		<property name="encoding" value="UTF-8" />
+		
+		<property name="fileViewPath" value="/" />
+		
+		<property name="maxUploadSize" value="10" />
+	</constant>
+	
+	<scan>
+		<property name="bean" value=""/>
+		<property name="controller" value=""/>
+	</scan>
+
+
+</Puff>

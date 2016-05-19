@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Server Status Info</title>
+<style type="text/css">
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	vertical-align: middle;
+}
+
+body {
+	font-family: "Microsoft YaHei", Verdana, sans-serif, "SimSun";    
+	font-size: 13px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.css-form {
+	border: 1px solid #CCC;
+}
+
+.css-form-header {
+	border-bottom: 1px solid #CCC;
+	clear: both;
+	height: 30px;
+	padding: 12px;
+}
+
+.css-form-row {
+	padding: 10px 20px;
+}
+
+.tab-content dl::after, .div-content dl::after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.tab-content dl:first-child {
+	border-top: medium none;
+}
+
+.tab-content dl, .div-content dl {
+	clear: both;
+	display: block;
+	line-height: 25px;
+	padding: 6px 0;
+}
+
+.tab-content {
+	color: #666;
+	font-size: 14px;
+}
+
+.tab-content dl dt {
+	color: #333;
+	display: block;
+	float: left;
+	text-align: right;
+	width: 200px;
+}
+
+.tab-content dl dd {
+	margin-left: 220px;
+}
+</style>
+</head>
+<body>
+	<form class="css-form">
+		<div class="css-form-header">
+			<h1>服务器信息</h1>
+		</div>
+		<div class="css-form-row">
+			<div class="tab-content">
+				<dl>
+					<dt>Puff-Framework版本：</dt>
+					<dd>${puff.version}</dd>
+				</dl>
+				<dl>
+					<dt>服务器名称：</dt>
+					<dd>${server.hostname}</dd>
+				</dl>
+				<dl>
+					<dt>服务器IP地址：</dt>
+					<dd>${server.ip}</dd>
+				</dl>
+				<dl>
+					<dt>服务器当前时间：</dt>
+					<dd>${server.nowtime}</dd>
+				</dl>
+				<dl>
+					<dt>服务器启动时间：</dt>
+					<dd>${server.starttime}</dd>
+				</dl>
+				<dl>
+					<dt>服务器运行时间：</dt>
+					<dd>${server.runtime}</dd>
+				</dl>
+				<dl>
+					<dt>服务器信息：</dt>
+					<dd>${os.name}(内核${os.version}) ${os.arch}&nbsp;&nbsp;${server.availableProcessors}核</dd>
+				</dl>
+				<dl>
+					<dt>服务器用户：</dt>
+					<dd>${user.name}(${user.home})</dd>
+				</dl>
+				<dl>
+					<dt>服务器语言：</dt>
+					<dd>${user.language}-${user.country} (${file.encoding})</dd>
+				</dl>
+				<dl>
+					<dt>系统安装目录：</dt>
+					<dd>${user.dir}</dd>
+				</dl>
+				<dl>
+					<dt>Java版本：</dt>
+					<dd>${java.version}</dd>
+				</dl>
+				
+				<dl>
+					<dt>Java安装目录：</dt>
+					<dd>${java.home}</dd>
+				</dl>
+				
+				<dl>
+					<dt>Java运行临时目录：</dt>
+					<dd>${java.io.tmpdir}</dd>
+				</dl>
+				
+				<dl>
+					<dt>Java虚拟机实现：</dt>
+					<dd>${java.vendor} ${java.vm.name}</dd>
+				</dl>
+				
+				<dl>
+					<dt>Java类格式版本号：</dt>
+					<dd>${java.class.version}</dd>
+				</dl>
+				<dl>
+					<dt>Java类路径：</dt>
+					<dd>${java.class.path}</dd>
+				</dl>
+				<dl>
+					<dt>Servlet容器：</dt>
+					<dd>${server.serverInfo}</dd>
+				</dl>
+				<dl>
+					<dt>虚拟机总内存：</dt>
+					<dd>${server.totalMemory}</dd>
+				</dl>
+				<dl>
+					<dt>虚拟机空闲内存：</dt>
+					<dd>${server.freeMemory}</dd>
+				</dl>
+				<dl>
+					<dt>虚拟机最大内存：</dt>
+					<dd>${server.maxMemory}</dd>
+				</dl>
+				<dl>
+					<dt>服务器端口：</dt>
+					<dd>${server.serverPort}</dd>
+				</dl>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

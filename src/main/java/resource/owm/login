@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Puff System Monitor Login</title>
+<style type="text/css">
+.loginbody {
+	font-family: "Microsoft YaHei", Verdana, sans-serif, "SimSun";    
+	background: none repeat scroll 0 0 #f7f7f7;
+    color: #777;
+    text-align: center;
+}
+.login-screen {
+    left: 50%;
+    margin-left: -245px;
+    margin-top: -240px;
+    position: absolute;
+    text-align: left;
+    top: 50%;
+    width: 490px;
+}
+.login-field-authcode {
+	display: block;
+	height: 20px;
+	position: absolute;
+	right: 98px;
+	top: 1px;
+	width: 16px;
+}
+.login-form {
+    float: left;
+    margin-left: 66px;
+    padding: 20px 25px 25px;
+    text-align: center;
+    width: 310px;
+}
+.control-group {
+    margin-bottom: 6px;
+    position: relative;
+}
+.login-field {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    color: #acb6c0;
+    display: inline-block;
+    font-size: 13px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 11px 0 11px 10px;
+    vertical-align: middle;
+    width: 296px;
+}
+.btn-login {
+    background-color: #3e3e3e;
+    border: 1px solid #3e3e3e;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 22px;
+    padding: 5.5px 30px;
+    margin-top: 15px;
+}
+</style>
+</head>
+<script type="text/javascript">
+var xmlhttp;
+function login(){
+    if(window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+        if(xmlhttp.overrideMimeType) {
+            xmlhttp.overrideMimeType("text/html");
+        }
+    }else if(window.ActiveXObject){
+        var activeName = ["MSXML2.XMLHTTP","Microsoft.XMLHTTP"];
+        for(var i=0;i>activeName.length();i++) {
+              try{
+                  xmlhttp = new ActiveXObject(activeName[i]);
+                  break;
+              }catch(e){
+              }
+        }
+    }
+    //注册回调函数  
+    xmlhttp.onreadystatechange=callback;
+    xmlhttp.open("POST","${ctx}/puff/owm/resource/login",true);
+    xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");  
+    var target = document.getElementById('target').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var authcode = document.getElementById('authcode').value;
+    xmlhttp.send("target="+target+"&monitor.username="+username+"&monitor.password="+password+"&monitor.authcode="+authcode);
+}
+
+function callback() {  
+    if(xmlhttp.readyState == 4&&xmlhttp.status == 200) {
+	    var response = xmlhttp.responseText;
+	    response=eval("("+response+")");
+	    if (response.msg) {
+			document.getElementById('msg').innerHTML = '';
+			document.getElementById('msg').innerHTML = response.msg;
+			document.getElementById('authcode').val='';
+			document.getElementById('auth_code').click();
+		}else{
+			window.location = response.target;
+		}
+    }
+}
+
+document.onkeydown = function (e) {
+	var ev =document.all ?window.event :e;
+	if (ev.keyCode ==13) {
+		login();
+	}
+}
+</script>
+<body class="loginbody">
+	<div class="login-screen">
+		<div class="login-form">
+			<h1>System Monitor</h1>
+			<form id="login_form">
+			    <input id="target" name="target" type="hidden" value="${target}"/>
+				<div class="control-group">
+					<input id="username" name="monitor.username" type="text" class="login-field" placeholder="username" autocomplete="off"/>
+				</div>
+				<div class="control-group">
+					<input id="password" name="monitor.password" type="password" class="login-field" placeholder="password" autocomplete="off"/>
+				</div>
+				<div class="control-group">
+					<input id="authcode" name="authcode" type="text" id="authcode" class="login-field" placeholder="authcode" autocomplete="off"/> 
+					<label class="login-field-authcode">
+						<img id="auth_code" style="cursor: pointer;" src="${ctx}/puff/owm/resource/authcode" onclick="javascript:document.getElementById('authcode').value='';javascript:src='${ctx}/puff/owm/resource/authcode?'+(Math.random());">
+					</label>
+				</div>
+				<div class="control-group">
+					<span id="msg"></span>
+				</div>
+				<div>
+					<input type="button" name="btnSubmit" value="OK !   Login..." class="btn-login" onclick="login();"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

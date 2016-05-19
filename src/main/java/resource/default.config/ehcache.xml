@@ -1,0 +1,8 @@
+<ehcache updateCheck="false" dynamicConfig="false">
+	<diskStore path="java.io.tmpdir" />
+	<cacheManagerEventListenerFactory
+		class="" properties="" />
+	<defaultCache maxElementsInMemory="2000" eternal="true"
+		overflowToDisk="true">
+	</defaultCache>
+</ehcache>
